@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  node:
+    user: node
+    image: node:alpine
+    container_name: node-alpine
+    hostname: node-alpine
+    working_dir: /app
+    volumes:
+      - ./src:/app
+    command: sh -c "npm install && node index.js"
+    networks:
+      - osm-net
+    ports:
+      - 3000:3000
+
+networks:
+  osm-net:
+    driver: bridge
