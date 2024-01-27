@@ -1,17 +1,39 @@
 version: '3.8'
 
 services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    hostname: mysql
+    command: --innodb-use-native-aio=0
+    networks:
+      - osm-net
+    volumes:
+      - ./database:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=db
+      - MYSQL_ROOT_PASSWORD=root
+    restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-uroot", "-proot" ]
+      interval: 5s
+      timeout: 30s
+      retries: 10
+
   node:
     user: node
     image: node:alpine
     container_name: node-alpine
     hostname: node-alpine
     working_dir: /app
+    command: sh -c "npm install && node index.js"
     volumes:
       - ./src:/app
-    command: sh -c "npm install && node index.js"
     networks:
       - osm-net
+    depends_on:
+      mysql:
+        condition: service_healthy
 
   nginx:
     image: nginx:alpine
