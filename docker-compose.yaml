@@ -12,8 +12,19 @@ services:
     command: sh -c "npm install && node index.js"
     networks:
       - osm-net
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-alpine
+    hostname: nginx-alpine
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/
+    networks:
+      - osm-net
     ports:
-      - 3000:3000
+      - 8080:80
+    depends_on:
+      - node
 
 networks:
   osm-net:
