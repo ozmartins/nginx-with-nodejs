@@ -9,8 +9,8 @@ const config = {
     password: 'root',
     database: 'db'
 }
-const create = "CREATE TABLE IF NOT EXISTS people(id int not null auto_increment, name varchar(255) not null, primary key(id))";
-const insert = "INSERT INTO people(name) values('Oseias da Silva Martins')";
+const create = "CREATE TABLE IF NOT EXISTS people(id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, PRIMARY KEY(id))";
+const insert = "INSERT INTO people(name) VALUES ('Oseias da Silva Martins')";
 const select = "SELECT * FROM people;";
 
 var connection = mysql.createConnection(config);

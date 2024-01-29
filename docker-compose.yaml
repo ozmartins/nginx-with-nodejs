@@ -15,7 +15,15 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     restart: always
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-uroot", "-proot" ]
+      test:
+        [
+          "CMD",
+          "mysql",
+          "-uroot",
+          "-proot",
+          "-qfsBe",
+          "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='db1'"
+        ]
       interval: 5s
       timeout: 30s
       retries: 10
@@ -30,7 +38,6 @@ services:
     restart: always
     volumes:
       - ./src:/app
-      - ./mysql:/mysql
     networks:
       - osm-net
     depends_on:
