@@ -4,7 +4,7 @@ Este repositório foi criado para atender ao desafio de Docker do curso Full Cyc
 
 O repositório também possui um arquivo `docker-compose.yaml` que cria um contêiner MySql, um contêiner NodeJS e um contêiner Nginx. Dentro do arquivo `docker-compose.yaml` configurou-se o serviço mysql de modo que ele crie um banco de dados chamado `db`. Nele também foi configurado um volume que permite que os dados inseridos no banco sejam salvos na máquina hospedeira do contêiner. Por fim, este serviço possui um healthcheck configurado. Desta forma, o serviço é considerado saudável apenas quando o serviço está rodando e o banco de dados `db` já estiver criado.
 
-Ainda no arquivo `docker-compose.yaml`, configurou-se o serviço node que instala as dependências usando npm e, em seguida, executa o arquivo `index.js`. Esse serviço usa a cláusula `depends_on`  para garantir que ele será executado somente quando o serviço mysql esteja saudável.
+Ainda no arquivo `docker-compose.yaml`, configurou-se o serviço node que instala as dependências usando npm e, em seguida, executa o arquivo `index.js`. Esse serviço usa a cláusula `depends_on`  para garantir que ele será executado somente quando o serviço mysql estiver saudável.
 
 Finalmente, configurou o serviço nginx para que ele funcione como um proxy reverso para a aplicação NodeJS. O serviço nginx expõe a porta 8080 e está configurado para ser executado apenas quando o serviço node já estiver rodando.
 
