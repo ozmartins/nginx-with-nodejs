@@ -22,7 +22,7 @@ services:
           "-uroot",
           "-proot",
           "-qfsBe",
-          "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='db1'"
+          "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='db'"
         ]
       interval: 5s
       timeout: 30s
