@@ -6,7 +6,7 @@ O repositório também possui um arquivo `docker-compose.yaml` que cria um cont�
 
 Ainda no arquivo `docker-compose.yaml`, configurou-se o serviço node que instala as dependências usando npm e, em seguida, executa o arquivo `index.js`. Esse serviço usa a cláusula `depends_on`  para garantir que ele será executado somente quando o serviço mysql estiver saudável.
 
-Finalmente, configurou o serviço nginx para que ele funcione como um proxy reverso para a aplicação NodeJS. O serviço nginx expõe a porta 8080 e está configurado para ser executado apenas quando o serviço node já estiver rodando.
+Finalmente, configurou-se o serviço nginx para que ele funcione como um proxy reverso para a aplicação NodeJS. O serviço nginx expõe a porta 8080 e está configurado para ser executado apenas quando o serviço node já estiver rodando.
 
 ## Rodando localmente
 
